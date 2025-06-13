@@ -1,5 +1,5 @@
 {
-  "name": "react-pdf-tools",
+  "name": "jasmines-awesome-pdf-tools",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -23,10 +23,13 @@
     "react-scripts": "5.0.0",
     "react-to-print": "^3.1.0"
   },
+  "homepage": "https://antonynaumovic.github.io/japt",
   "scripts": {
     "start": "WATCHPACK_POLLING=true react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test"
+    "test": "react-scripts test",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "engines": {
     "node": ">=16.13.1"
@@ -50,6 +53,7 @@
     ]
   },
   "devDependencies": {
+    "gh-pages": "^6.3.0",
     "tailwindcss": "^3.4.17"
   }
 }
