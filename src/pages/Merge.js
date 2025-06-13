@@ -6,7 +6,7 @@ import { PDFDocument } from "pdf-lib";
 import { readFile } from "../utils/readFile";
 import Form from "react-bootstrap/Form";
 import JSZip from "jszip";
-import arrayShuffle from 'array-shuffle';
+import arrayShuffle from "array-shuffle";
 import { useReactToPrint } from "react-to-print";
 
 const Merge = () => {
@@ -18,11 +18,15 @@ const Merge = () => {
   const [isProcessing, setProcessing] = useState(false);
   const [downloadLink, setDownloadLink] = useState(null);
   const [zippedFile, setZippedFile] = useState(null);
-  
-
 
   const handleChange = (event) => {
-    setContainedAmount(event.target.value <= 0 ? 1 : event.target.value > pdfs.length ? pdfs.length : event.target.value);
+    setContainedAmount(
+      event.target.value <= 0
+        ? 1
+        : event.target.value > pdfs.length
+        ? pdfs.length
+        : event.target.value
+    );
   };
 
   const updatePdfs = (newPdfs) => {
@@ -48,8 +52,10 @@ const Merge = () => {
     var outputPdfsLocal = [];
     for (let i = 0; i < splitAmount; i++) {
       try {
-        var shuffledPdfs = arrayShuffle(pdfs).slice(0, containedAmount - 1);
-        const arrayBufferPromises = shuffledPdfs.map((pdf) => readFile(pdf.file));
+        var shuffledPdfs = arrayShuffle(pdfs).slice(0, containedAmount);
+        const arrayBufferPromises = shuffledPdfs.map((pdf) =>
+          readFile(pdf.file)
+        );
         const arrayBuffers = await Promise.all(arrayBufferPromises);
 
         const pdfDocumentPromises = arrayBuffers.map((buffer) =>
@@ -74,9 +80,7 @@ const Merge = () => {
         const mergedPdfBlob = new Blob([mergedPdfFile], {
           type: "application/pdf",
         });
-        console.log(
-          `Merged PDF ${i + 1} size: ${mergedPdfBlob.size} bytes`
-        );
+        console.log(`Merged PDF ${i + 1} size: ${mergedPdfBlob.size} bytes`);
         // setOutputPdfs(outputPdfs => [...outputPdfs, {mergedPdfBlob}]);
         outputPdfsLocal.push(mergedPdfBlob);
         console.log("Output PDFs:", outputPdfsLocal);
@@ -89,8 +93,7 @@ const Merge = () => {
     }
     console.log("Output PDFs:", outputPdfsLocal);
     const zip = new JSZip();
-    
-    
+
     outputPdfsLocal.forEach((pdfBlob, index) => {
       zip.file(`merged_pdf_${index + 1}.pdf`, pdfBlob);
     });
@@ -145,18 +148,18 @@ const Merge = () => {
     }
   };
 
-  const handlePrint = () =>{
-    var iframe =  document.createElement('iframe');
+  const handlePrint = () => {
+    var iframe = document.createElement("iframe");
     document.body.appendChild(iframe);
-    iframe.style.display = 'none';
+    iframe.style.display = "none";
     iframe.src = downloadLink;
-    iframe.onload = function() {
-      setTimeout(function() {
+    iframe.onload = function () {
+      setTimeout(function () {
         iframe.focus();
         iframe.contentWindow.print();
       }, 1);
     };
-  }
+  };
 
   // const mergePdfs = async () => {
   //   try {
@@ -224,7 +227,9 @@ const Merge = () => {
                 />
               </Col>
               <Col>
-                <Form.Label>Pages per PDF (Only when creating more than 1)</Form.Label>
+                <Form.Label>
+                  Pages per PDF (Only when creating more than 1)
+                </Form.Label>
                 <Form.Control
                   type="number"
                   className="w-100 my-2 big-text"
@@ -263,16 +268,20 @@ const Merge = () => {
                 Download
               </Button>
             </Col>
-            <Col>
-              <Button
-                className="w-100 my-2 big-text"
-                variant="warning"
-                active={splitAmount <= 1}
-                onClick={() => {handlePrint()}}
-              >
-                Print
-              </Button>
-            </Col>
+            {splitAmount <= 1 && (
+              <Col>
+                <Button
+                  className="w-100 my-2 big-text"
+                  variant="warning"
+                  active={splitAmount <= 1}
+                  onClick={() => {
+                    handlePrint();
+                  }}
+                >
+                  Print
+                </Button>
+              </Col>
+            )}
           </Row>
         )}
         {isProcessing && (

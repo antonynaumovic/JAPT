@@ -17,7 +17,7 @@ const App = () => {
           <Route path="/" element={<Merge />} />
           {/* <Route path="/merge" element={<Merge />} />
           <Route path="/split" element={<Split />} /> */}
-          <Route path="*" element={<NotFound />} />
+          <Route path="*" element={<Merge />} />
         </Routes>
       </Container>
     </>
