@@ -1,7 +1,7 @@
 {
   "name": "jasmines-awesome-pdf-tools",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "dependencies": {
     "@dropzone-ui/react": "^6.4.2",
     "@plesk/react-movable": "^2.7.1",
@@ -23,7 +23,7 @@
     "react-scripts": "5.0.0",
     "react-to-print": "^3.1.0"
   },
-  "homepage": "https://antonynaumovic.github.io/japt",
+  "homepage": "https://antonynaumovic.github.io/JAPT",
   "scripts": {
     "start": "WATCHPACK_POLLING=true react-scripts start",
     "build": "react-scripts build",
