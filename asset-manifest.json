@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/JAPT/static/css/main.cd051c25.css",
-    "main.js": "/JAPT/static/js/main.0844b936.js",
+    "main.css": "/JAPT/static/css/main.3f290efb.css",
+    "main.js": "/JAPT/static/js/main.e83355ea.js",
     "index.html": "/JAPT/index.html",
-    "main.cd051c25.css.map": "/JAPT/static/css/main.cd051c25.css.map",
-    "main.0844b936.js.map": "/JAPT/static/js/main.0844b936.js.map"
+    "main.3f290efb.css.map": "/JAPT/static/css/main.3f290efb.css.map",
+    "main.e83355ea.js.map": "/JAPT/static/js/main.e83355ea.js.map"
   },
   "entrypoints": [
-    "static/css/main.cd051c25.css",
-    "static/js/main.0844b936.js"
+    "static/css/main.3f290efb.css",
+    "static/js/main.e83355ea.js"
   ]
 }
